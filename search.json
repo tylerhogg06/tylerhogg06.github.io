@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About Me",
+    "section": "",
+    "text": "I am Tyler Hogg, and I am a double major in Sports Media & Communications and Advertising & Public Relations with minors in Business Administration and Sports Management & Business."
+  },
+  {
+    "objectID": "posts/01-nebraska-football-2026-stats/index.html",
+    "href": "posts/01-nebraska-football-2026-stats/index.html",
+    "title": "Nebraska Football 2026 - A year of disappointment",
+    "section": "",
+    "text": "This is a story about Nebraska Football\n\n\nCode\nlibrary(tidyverse)\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.2.1     ✔ readr     2.2.0\n✔ forcats   1.0.1     ✔ stringr   1.6.0\n✔ ggplot2   4.0.3     ✔ tibble    3.3.1\n✔ lubridate 1.9.5     ✔ tidyr     1.3.2\n✔ purrr     1.2.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\nMore of the story here we go"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "tylersportsblog",
+    "section": "",
+    "text": "Nebraska Football 2026 - A year of disappointment\n\n\n\nfootball\n\nhuskers\n\n\n\n\n\n\n\n\n\n\n\nNov 13, 2026\n\n\nTyler Hogg\n\n\n\n\n\nNo matching items"
+  }
+]
