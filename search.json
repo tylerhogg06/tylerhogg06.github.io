@@ -9,15 +9,15 @@
   {
     "objectID": "posts/01-nebraska-football-2026-stats/index.html",
     "href": "posts/01-nebraska-football-2026-stats/index.html",
-    "title": "Nebraska Football 2026 - A year of disappointment",
+    "title": "Nebraska Football Losses: Embarrassing Mistakes or Dumb (Un)Luck?",
     "section": "",
-    "text": "This is a story about Nebraska Football\n\n\nCode\nlibrary(tidyverse)\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.2.1     ✔ readr     2.2.0\n✔ forcats   1.0.1     ✔ stringr   1.6.0\n✔ ggplot2   4.0.3     ✔ tibble    3.3.1\n✔ lubridate 1.9.5     ✔ tidyr     1.3.2\n✔ purrr     1.2.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\nMore of the story here we go"
+    "text": "This is a story about Nebraska Football. Today we are going to explore the losses the team (and the fans) have suffered and breaking down the reasons behind them.\n\n\nCode\nlibrary(tidyverse)\nlibrary(ggrepel)\nlogs24 &lt;- read_csv(\"footballlogs24.csv\")\nlogs26 &lt;- read_csv(\"nebfootball26new.csv\")\n\n\nMore of the story here we go\n\n\nCode\nwinlosslogs &lt;- logs24 |&gt;\n  mutate(\n    wins = case_when(\n      grepl(\"W\", Result) ~ 1,\n      grepl(\"L\", Result) ~ 0\n    )\n  )\n\nyardsper &lt;- winlosslogs |&gt;\n  group_by(Team, Conference) |&gt;\n  summarise(\n    total_plays = sum(OffensivePlays),\n    total_yards = sum(OffensiveYards),\n    defensive_plays = sum(DefPlays),\n    defensive_yards = sum(DefYards),\n    total_wins = sum(wins)\n  ) |&gt;\n  mutate(\n    offensive_ypp = total_yards / total_plays,\n    defensive_ypp = defensive_yards / defensive_plays\n  )\n\nnu &lt;- yardsper |&gt;\n  filter(Team == \"Nebraska\")\n\nyardsper |&gt;\n  ungroup() |&gt;\n  summarise(\n    offense= mean(offensive_ypp),\n    defense = mean(defensive_ypp)\n  )\n\n\n# A tibble: 1 × 2\n  offense defense\n    &lt;dbl&gt;   &lt;dbl&gt;\n1    5.76    5.60\n\n\nCode\nggplot() +\n  geom_point(\n    data = yardsper,\n    aes(x = offensive_ypp, y = defensive_ypp, size = total_wins),\n    alpha = .3\n  ) +\n  scale_size(range = c(3, 8), name = \"Wins\") +\n  geom_point(\n    data = nu,\n    aes(\n      x = offensive_ypp,\n      y = defensive_ypp,\n      size = total_wins\n    ),\n    color = \"red\"\n  )+\n  geom_vline(xintercept = 5.763149) +\n  geom_hline(yintercept= 5.601157)\n\n\n\n\n\n\n\n\n\n\n\nCode\nbigten &lt;- logs24 |&gt; filter(Conference == \"Big Ten Conference\")|&gt;\n  mutate(\n    total_plays = PassingAtt + RushingAtt,\n    total_yards = PassingYds + RushingYds,\n    offensive_ypp = total_yards / total_plays,\n  )\n\nbigten |&gt; summarise(\n    avg_ypp = mean(OffenseAvg)\n  )\n\n\n# A tibble: 1 × 1\n  avg_ypp\n    &lt;dbl&gt;\n1    5.71\n\n\nCode\nggplot()+\n  geom_hline(yintercept= 5.708621, color=\"red\")+\n  geom_line(data=bigten, aes(x=Date, y=OffenseAvg, group=Team)) +\n  facet_wrap(~Team)"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "tylersportsblog",
     "section": "",
-    "text": "Nebraska Football 2026 - A year of disappointment\n\n\n\nfootball\n\nhuskers\n\n\n\n\n\n\n\n\n\n\n\nNov 13, 2026\n\n\nTyler Hogg\n\n\n\n\n\nNo matching items"
+    "text": "Nebraska Football Losses: Embarrassing Mistakes or Dumb (Un)Luck?\n\n\n\nfootball\n\nhuskers\n\n\n\n\n\n\n\n\n\n\n\nNov 13, 2026\n\n\nTyler Hogg\n\n\n\n\n\nNo matching items"
   }
 ]
